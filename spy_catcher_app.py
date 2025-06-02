@@ -65,34 +65,6 @@ st.pyplot(fig)
 st.subheader("🧮 Stationary Distribution Table")
 st.dataframe(df_pi_sorted.set_index("Country").style.format("{:.3f}"))
 
-# --- Add Geographic Heatmap ---
-st.subheader("🗺️ Geographic Heatmap of Spy Probability")
-country_to_iso = {
-    "Argentina": "ARG",
-    "Bolivia": "BOL",
-    "Brazil": "BRA",
-    "Chile": "CHL",
-    "Colombia": "COL",
-    "Ecuador": "ECU",
-    "French Guiana": "GUF",
-    "Guyana": "GUY",
-    "Paraguay": "PRY",
-    "Peru": "PER",
-    "Suriname": "SUR",
-    "Uruguay": "URY",
-    "Venezuela": "VEN"
-}
-df_pi_iso = df_pi.copy()
-df_pi_iso["ISO"] = df_pi_iso["Country"].map(country_to_iso)
-fig_map = px.choropleth(df_pi_iso,
-                        locations="ISO",
-                        color="Probability",
-                        hover_name="Country",
-                        color_continuous_scale="Reds",
-                        scope="south america",
-                        title="Heatmap of Spy Probability by Country")
-st.plotly_chart(fig_map, use_container_width=True)
-
 # --- Add Result Analysis ---
 st.subheader("🕵️ Result Analysis")
 most_likely_country = df_pi_sorted.iloc[0]["Country"]
