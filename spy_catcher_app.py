@@ -34,6 +34,11 @@ neighbors = {
 countries = list(neighbors.keys())
 n = len(countries)
 
+# --- Streamlit Selectbox for Initial Country ---
+st.sidebar.subheader("🔧 Simulation Settings")
+initial_country = st.sidebar.selectbox("Select Initial Country (Optional)", countries, index=countries.index("Chile"))
+st.sidebar.markdown("This selection is for future simulation use; current stationary distribution is independent of start state.")
+
 # --- Build Transition Matrix ---
 P = np.zeros((n, n))
 for i, c in enumerate(countries):
